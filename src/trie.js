@@ -39,6 +39,39 @@ const Trie = function(){
         }
         return (node.keys.has(word[0]) && node.keys.get(word[0]).isEnd) ? true : false
     }
+
+    this.getWord = function(word){
+        var node = this.root
+        var collection = []
+        var words = new String()
+        while (word.length > 1){
+            if(!node.keys.has(word[0])){
+                return false
+            }
+            else{
+                words+=word[0]
+                node = node.keys.get(word[0])
+                word = word.substr(1);
+            }
+        }
+        
+       if (node.keys.has(word[0])){
+           var nextLetters = Array.from(node.keys.get(word[0]).keys.keys())
+           words+=word[0]
+           var node =  node.keys.get(word[0])
+           var getRest = function(node, string ){
+            if(node.keys.size > 0){ 
+                for (nodes of node.keys.keys()){
+                    getRest(node.keys.get(nodes), string.concat(nodes))
+                }
+                node.end==true?
+                    console.log(node)
+                   : null
+            }else {return }
+           }
+           getRest(node, words)
+       } 
+    }
 }
 
 
