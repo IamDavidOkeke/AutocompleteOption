@@ -72,6 +72,11 @@ const Trie = function(){
            getRest(node, words)
        } 
     }
+    this.build = function(array){
+        for (var i = 0; i < array.length; i++){
+            this.add(array[i])
+        }
+    }
 }
 
 
