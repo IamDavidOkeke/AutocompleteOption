@@ -15,7 +15,7 @@ const Trie = function(){
 
     this.add = function(input, node = this.root){
         if (input.length == 0){
-            node.setEnd
+            node.setEnd()
             return
         }
         else if(!node.keys.has(input[0])){
@@ -54,23 +54,25 @@ const Trie = function(){
                 word = word.substr(1);
             }
         }
-        
        if (node.keys.has(word[0])){
-           var nextLetters = Array.from(node.keys.get(word[0]).keys.keys())
            words+=word[0]
            var node =  node.keys.get(word[0])
            var getRest = function(node, string ){
+            if(node.end == true){
+                collection.push(string)
+            }
             if(node.keys.size > 0){ 
                 for (nodes of node.keys.keys()){
                     getRest(node.keys.get(nodes), string.concat(nodes))
                 }
-                node.end==true?
-                    console.log(node)
-                   : null
-            }else {return }
+                
+            }else {
+              return
+            }
            }
            getRest(node, words)
        } 
+       return collection
     }
     this.build = function(array){
         for (var i = 0; i < array.length; i++){
@@ -80,4 +82,10 @@ const Trie = function(){
 }
 
 
-module.exports = Trie
+
+myTrie = new Trie()
+myTrie.add('chez')
+myTrie.add('chely')
+myTrie.add('edoko')
+
+myTrie.getWord('ch')
