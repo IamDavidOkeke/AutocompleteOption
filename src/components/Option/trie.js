@@ -62,7 +62,7 @@ const Trie = function(){
                 collection.push(string)
             }
             if(node.keys.size > 0){ 
-                for (nodes of node.keys.keys()){
+                for ( let nodes of node.keys.keys()){
                     getRest(node.keys.get(nodes), string.concat(nodes))
                 }
                 
@@ -82,10 +82,4 @@ const Trie = function(){
 }
 
 
-
-myTrie = new Trie()
-myTrie.add('chez')
-myTrie.add('chely')
-myTrie.add('edoko')
-
-myTrie.getWord('ch')
+export default Trie
